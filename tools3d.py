@@ -1,3 +1,10 @@
+"""
+Examen de Recuperación 3D
+Graficacion 
+ISIC
+EDUARDO GONZALEZ FLORES
+"""
+
 import numpy as np
 from math import sin, cos, radians
 
