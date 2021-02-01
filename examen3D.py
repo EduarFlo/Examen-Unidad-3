@@ -1,5 +1,8 @@
 """
-Intersection example
+Examen de Recuperación 3D
+Graficacion 
+ISIC
+EDUARDO GONZALEZ FLORES
 """
 import tools3d
 from math import sin, cos, radians, sqrt
@@ -29,15 +32,13 @@ for i in range(len(x)):
   zg.append(z[i]+zc)
 
 #_____Plotear el sistema
-
-
 def plotPlaneLine(xg, yg, zg, xh, yh, xhg, yhg, hitcolor):
   plt.axis([0, 250, 200, 0])
   plt.axis('on')
   plt.grid(True)
   plt.plot([xg[0], xg[1]], [yg[0], yg[1]], color='k')
-  plt.plot([xg[1], xg[2]], [yg[1], yg[2]], color='k')  # Plano
-  plt.plot([xg[2], xg[0]], [yg[2], yg[0]], color='k')
+  plt.plot([xg[1], xg[2]], [yg[1], yg[2]], color='y')  # Plano
+  plt.plot([xg[2], xg[0]], [yg[2], yg[0]], color='b')
 
   plt.plot([xg[3], xg[4]], [yg[3], yg[4]], color='b')  # Line
 
@@ -48,32 +49,18 @@ def plotPlaneLine(xg, yg, zg, xh, yh, xhg, yhg, hitcolor):
 
   plt.show()
 
-def areas(x,y,z):
-
-  a=x[0]-[1]
-  b=x[0]-y[1]
-  c=x[0]-y[1]
-  Q01 = sqrt(a*a+b*b+c*c)
-
-  a = x[1]-[2]
-  b = x[1]-y[2]
-  c = x[1]-y[2]
-  Q12 = sqrt(a*a+b*b+c*c)
-
-  a = x[2]-[0]
-  b = x[2]-y[0]
-  c = x[2]-y[0]
-  Q20 = sqrt(a*a+b*b+c*c)
-
-
-
+"""
+Calculamos las areas de los triangulos utilizando la formula de heron
+EL ejercicio nos pide calcular el area de los tres triangulos de acuerdo al 
+hitpoint que nos de el usuario
+Entonces debemos calcular las distancias entre los puntos para calcular el area con la formula
+"""
 
 def hitpoint(x, y, z):
-
-  #___Distancia point 4 to 3
-  a = x[4]-x[3]
-  b = y[4]-y[3]
-  c = z[4]-z[3]
+  #___Distancia point 0 to 1
+  a = x[0]-x[1]
+  b = y[0]-y[1]
+  c = z[0]-z[1]
   Q45 = sqrt(a*a+b*b+c*c)
   #___unit vector components point 4 to 5
   lx = a/Q45
@@ -181,10 +168,9 @@ def plotPlaneLinez(xc, yc, zc, Rz):
   plotPlaneLine(xg, yg, zg, xh, yh, xhg, yhg, hitcolor)
 
 
-#______Pedir al usuario que eje desea trabajr y plotear
+#______Pedir al usuario el hitpoint paraque se dibujen los triangulos
 while True:
-  axis = input(
-      "Teclea el eje que deseas visualizar 'x,y,z' o pulsa w para salir: ")
+  axis = input("Introduzca el HitPoint ")
   if axis == 'x':  # plotear el eje x
     Rx = radians(float(input('Dame los grados de rotacion: ')))
     plotPlaneLinex(xc, yc, zc, Rx)  # Llamamos a la funcion de ploteo
